@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package chat;
+
+service ChatService {
+  // Unary RPC
+  rpc UnaryChat (ChatMessage) returns (ChatMessage) {}
+
+  // Server Streaming RPC
+  rpc ServerStreamingChat (ChatMessage) returns (stream ChatMessage) {}
+
+  // Client Streaming RPC
+  rpc ClientStreamingChat (stream ChatMessage) returns (ChatMessage) {}
+
+  // Bidirectional Streaming RPC
+  rpc BidirectionalChat (stream ChatMessage) returns (stream ChatMessage) {}
+}
+
+message ChatMessage {
+  string room = 1;
+  string user = 2;
+  string message = 3;
+  int64 timestamp = 4;
+}
